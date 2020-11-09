@@ -7,7 +7,7 @@
 
 #include "gfx.h"
 
-#if (GFX_USE_GINPUT && GINPUT_NEED_MOUSE) 
+#if (GFX_USE_GINPUT && GINPUT_NEED_MOUSE)
 
 #define GMOUSE_DRIVER_VMT		GMOUSEVMT_ADS7843
 #include "../../../../src/ginput/ginput_driver_mouse.h"
@@ -26,12 +26,12 @@ static gBool MouseXYZ(GMouse* m, GMouseReading* pdr)
 	// No buttons
 	pdr->buttons = 0;
 	pdr->z = 0;
-	
+
 	if (getpin_pressed(m)) {
 		pdr->z = 1;						// Set to Z_MAX as we are pressed
 
 		aquire_bus(m);
-		
+
 		read_value(m, CMD_X);				// Dummy read - disable PenIRQ
 		pdr->x = read_value(m, CMD_X);		// Read X-Value
 
@@ -45,7 +45,7 @@ static gBool MouseXYZ(GMouse* m, GMouseReading* pdr)
 	return gTrue;
 }
 
-const GMouseVMT const GMOUSE_DRIVER_VMT[1] = {{
+const GMouseVMT GMOUSE_DRIVER_VMT[1] = {{
 	{
 		GDRIVER_TYPE_TOUCH,
 		GMOUSE_VFLG_TOUCH | GMOUSE_VFLG_CALIBRATE | GMOUSE_VFLG_CAL_TEST |
