@@ -574,7 +574,7 @@ void _gdispInit(void)
 	#elif GDISP_TOTAL_DISPLAYS > 1
 		{
 			unsigned	i;
-			extern const GDISPVMT const		GDISPVMT_OnlyOne[1];
+			extern const GDISPVMT		GDISPVMT_OnlyOne[1];
 
 			if (!(GDISPVMT_OnlyOne->d.flags & GDISP_VFLG_DYNAMICONLY)) {
 				for(i = 0; i < GDISP_TOTAL_DISPLAYS; i++)
@@ -583,7 +583,7 @@ void _gdispInit(void)
 		}
 	#else
 		{
-			extern const GDISPVMT const		GDISPVMT_OnlyOne[1];
+			extern const GDISPVMT		GDISPVMT_OnlyOne[1];
 
 			if (!(GDISPVMT_OnlyOne->d.flags & GDISP_VFLG_DYNAMICONLY))
 				gdriverRegister(&GDISPVMT_OnlyOne->d, 0);
@@ -1383,7 +1383,7 @@ void gdispGBlitArea(GDisplay *g, gCoord x, gCoord y, gCoord cx, gCoord cy, gCoor
 			do { p2 -= --b2; } while (p2+a >= b2);
 			p2 += a;
 		} while(++a <= radius2 && a < b1);
-		
+
 		if (a < radius2) {
 			// Do the combined circle where inner circle > 45 deg, outer circle > 45
 			do {
@@ -1394,7 +1394,7 @@ void gdispGBlitArea(GDisplay *g, gCoord x, gCoord y, gCoord cx, gCoord cy, gCoor
 				do { p2 -= --b2; } while (p2+a >= b2);
 				p2 += a++;
 			} while(b2 > 0);
-			
+
 		} else {
 			// Do the outer circle above the inner circle but < 45 deg
 			do {
@@ -1992,7 +1992,7 @@ void gdispGBlitArea(GDisplay *g, gCoord x, gCoord y, gCoord cx, gCoord cy, gCoor
 					if(curangle + 3*precision > startTan && curangle + 3*precision < endTan){g->p.y = yc - x; g->p.x = xc - y; drawpixel_clip(g);}
 					if(curangle + 5*precision > startTan && curangle + 5*precision < endTan){g->p.y = yc + y; g->p.x = xc - x; drawpixel_clip(g);}
 					if(curangle + 7*precision > startTan && curangle + 7*precision < endTan){g->p.y = yc + x; g->p.x = xc + y; drawpixel_clip(g);}
-						
+
 				}
 				else{
 					//Draw points by symmetry
@@ -2006,7 +2006,7 @@ void gdispGBlitArea(GDisplay *g, gCoord x, gCoord y, gCoord cx, gCoord cy, gCoor
 					if(curangle + precision > startTan || curangle + precision < endTan){g->p.y = yc - y; g->p.x = xc + x; drawpixel_clip(g);}
 					if(curangle + 3*precision > startTan || curangle + 3*precision < endTan){g->p.y = yc - x; g->p.x = xc - y; drawpixel_clip(g);}
 					if(curangle + 5*precision > startTan || curangle + 5*precision < endTan){g->p.y = yc + y; g->p.x = xc - x; drawpixel_clip(g);}
-					if(curangle + 7*precision > startTan || curangle + 7*precision < endTan){g->p.y = yc + x; g->p.x = xc + y; drawpixel_clip(g);}					
+					if(curangle + 7*precision > startTan || curangle + 7*precision < endTan){g->p.y = yc + x; g->p.x = xc + y; drawpixel_clip(g);}
 				}
 
 				//Compute next point
