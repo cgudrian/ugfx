@@ -11,7 +11,7 @@
 
 #include <string.h>
 
-#if CH_KERNEL_MAJOR < 2 || CH_KERNEL_MAJOR > 5
+#if CH_KERNEL_MAJOR < 2 || CH_KERNEL_MAJOR > 6
 	#error "GOS: Unsupported version of ChibiOS"
 #endif
 
@@ -105,7 +105,7 @@ void gfxSemInit(gSem *psem, gSemcount val, gSemcount limit)
 		val = limit;
 
 	psem->limit = limit;
-	
+
 	#if CH_KERNEL_MAJOR <= 2
 		chSemInit(&psem->sem, val);
 	#else
